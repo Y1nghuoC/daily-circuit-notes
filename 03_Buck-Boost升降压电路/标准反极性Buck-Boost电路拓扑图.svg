@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="460" viewBox="0 0 800 460" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wire { stroke:#000; stroke-width:2; fill:none; }
+      .comp { stroke:#000; stroke-width:2; fill:none; }
+      .node { fill:#000; }
+      .lbl { font-family: 'Times New Roman', serif; font-size:16px; fill:#000; }
+      .lbl-cn { font-family: 'SimSun', serif; font-size:15px; fill:#000; }
+      .lbl-sm { font-family:'Times New Roman',serif; font-size:14px; fill:#000; }
+      .lbl-note { font-family:'SimSun',serif; font-size:13px; fill:#666; }
+    </style>
+  </defs>
+
+  <!-- 底部公共地线 -->
+  <line class="wire" x1="80" y1="360" x2="700" y2="360"/>
+
+  <!-- 主通路 y=110 -->
+  <line class="wire" x1="80" y1="110" x2="110" y2="110"/>
+  <line class="wire" x1="175" y1="110" x2="220" y2="110"/>
+  <line class="wire" x1="220" y1="110" x2="278" y2="110"/>
+  <line class="wire" x1="308" y1="110" x2="700" y2="110"/>
+
+  <!-- 电池 Vin -->
+  <line class="wire" x1="80" y1="110" x2="80" y2="210"/>
+  <line class="comp" x1="65" y1="220" x2="95" y2="220" stroke-width="2.5"/>
+  <line class="comp" x1="70" y1="235" x2="90" y2="235" stroke-width="2.5"/>
+  <line class="wire" x1="80" y1="235" x2="80" y2="360"/>
+  <text class="lbl" x="38" y="175" text-anchor="middle">Vin</text>
+  <text class="lbl-sm" x="52" y="215" text-anchor="middle">+</text>
+  <text class="lbl-sm" x="52" y="360" text-anchor="middle">−</text>
+
+  <!-- 开关 S -->
+  <circle class="node" cx="110" cy="110" r="3.5"/>
+  <circle class="node" cx="175" cy="110" r="3.5"/>
+  <line class="comp" x1="110" y1="110" x2="165" y2="92"/>
+  <text class="lbl" x="143" y="78" text-anchor="middle">S</text>
+  <text class="lbl-note" x="143" y="62" text-anchor="middle">开关</text>
+
+  <!-- SW 节点 -->
+  <circle class="node" cx="220" cy="110" r="4.5"/>
+  <text class="lbl" x="220" y="88" text-anchor="middle">SW</text>
+  <text class="lbl-note" x="220" y="72" text-anchor="middle">开关节点</text>
+
+  <!-- 电感 L（垂直） -->
+  <line class="wire" x1="220" y1="110" x2="220" y2="170"/>
+  <path class="comp" d="M 220 170 A 7.5 7.5 0 0 1 220 185"/>
+  <path class="comp" d="M 220 185 A 7.5 7.5 0 0 1 220 200"/>
+  <path class="comp" d="M 220 200 A 7.5 7.5 0 0 1 220 215"/>
+  <path class="comp" d="M 220 215 A 7.5 7.5 0 0 1 220 230"/>
+  <line class="wire" x1="220" y1="230" x2="220" y2="360"/>
+  <text class="lbl" x="240" y="205" text-anchor="start">L</text>
+  <text class="lbl-note" x="240" y="222" text-anchor="start">储能电感</text>
+
+  <!-- 二极管 D（阴极接SW左，阳极接输出右） -->
+  <line class="comp" x1="278" y1="96" x2="278" y2="124" stroke-width="2.5"/>
+  <polygon class="comp" points="278,110 308,96 308,124"/>
+  <text class="lbl" x="293" y="78" text-anchor="middle">D</text>
+  <text class="lbl-note" x="293" y="62" text-anchor="middle">续流二极管</text>
+
+  <!-- 输出电容 C -->
+  <line class="wire" x1="460" y1="110" x2="460" y2="200"/>
+  <line class="comp" x1="445" y1="200" x2="475" y2="200" stroke-width="2.5"/>
+  <line class="comp" x1="445" y1="220" x2="475" y2="220" stroke-width="2.5"/>
+  <line class="wire" x1="460" y1="220" x2="460" y2="360"/>
+  <text class="lbl" x="460" y="88" text-anchor="middle">C</text>
+  <text class="lbl-note" x="460" y="72" text-anchor="middle">输出电容</text>
+  <text class="lbl-sm" x="482" y="208" text-anchor="start">−</text>
+
+  <!-- 负载方框 -->
+  <line class="wire" x1="610" y1="110" x2="610" y2="190"/>
+  <rect class="comp" x="575" y="190" width="70" height="90"/>
+  <text class="lbl-cn" x="610" y="243" text-anchor="middle">负载</text>
+  <line class="wire" x1="610" y1="280" x2="610" y2="360"/>
+
+  <!-- Vout 标注 -->
+  <text class="lbl" x="680" y="88" text-anchor="middle">Vout</text>
+  <text class="lbl-sm" x="695" y="102" text-anchor="start">−</text>
+  <text class="lbl-note" x="680" y="72" text-anchor="middle">反极性输出</text>
+
+  <!-- 底部说明 -->
+  <text class="lbl-cn" x="400" y="400" text-anchor="middle" font-size="14">Vout = −Vin × D / (1 − D)   （输出电压极性与输入相反）</text>
+  <text class="lbl-note" x="400" y="425" text-anchor="middle">D &lt; 0.5 降压  ·  D = 0.5 等幅  ·  D &gt; 0.5 升压</text>
+</svg>

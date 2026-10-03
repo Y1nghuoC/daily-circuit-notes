@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="780" height="440" viewBox="0 0 780 440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wire { stroke:#000; stroke-width:2; fill:none; }
+      .comp { stroke:#000; stroke-width:2; fill:none; }
+      .node { fill:#000; }
+      .lbl { font-family: 'Times New Roman', serif; font-size:16px; fill:#000; }
+      .lbl-cn { font-family: 'SimSun', serif; font-size:16px; fill:#000; }
+      .lbl-sm { font-family:'Times New Roman',serif; font-size:14px; fill:#000; }
+    </style>
+  </defs>
+
+  <!-- 底部公共地线 -->
+  <line class="wire" x1="80" y1="350" x2="680" y2="350"/>
+
+  <!-- 正极主通路 -->
+  <!-- 电池正极到开关 -->
+  <line class="wire" x1="80" y1="100" x2="120" y2="100"/>
+  <!-- 开关到SW节点 -->
+  <line class="wire" x1="175" y1="100" x2="230" y2="100"/>
+  <!-- SW到电感 -->
+  <line class="wire" x1="230" y1="100" x2="270" y2="100"/>
+  <!-- 电感到输出端 -->
+  <line class="wire" x1="345" y1="100" x2="680" y2="100"/>
+
+  <!-- 电池 Vin -->
+  <line class="wire" x1="80" y1="100" x2="80" y2="200"/>
+  <line class="comp" x1="65" y1="210" x2="95" y2="210" stroke-width="2.5"/>
+  <line class="comp" x1="70" y1="225" x2="90" y2="225" stroke-width="2.5"/>
+  <line class="wire" x1="80" y1="225" x2="80" y2="350"/>
+  <text class="lbl" x="40" y="165" text-anchor="middle">Vin</text>
+  <text class="lbl-sm" x="55" y="205" text-anchor="middle">+</text>
+
+  <!-- 开关 S（水平刀闸，串联在主通路） -->
+  <circle class="node" cx="120" cy="100" r="3"/>
+  <circle class="node" cx="175" cy="100" r="3"/>
+  <!-- 刀闸斜向上，表示断开 -->
+  <line class="comp" x1="120" y1="100" x2="165" y2="82"/>
+  <text class="lbl" x="148" y="72" text-anchor="middle">S</text>
+
+  <!-- SW 节点 -->
+  <circle class="node" cx="230" cy="100" r="4"/>
+  <text class="lbl" x="230" y="82" text-anchor="middle">SW</text>
+
+  <!-- 续流二极管 D（垂直支路，阴极在上接SW，阳极在下接地） -->
+  <line class="wire" x1="230" y1="100" x2="230" y2="180"/>
+  <!-- 阴极竖线（水平，在上） -->
+  <line class="comp" x1="216" y1="180" x2="244" y2="180" stroke-width="2.5"/>
+  <!-- 三角形：顶点朝上接阴极竖线，底边在下为阳极 -->
+  <polygon class="comp" points="230,180 216,200 244,200"/>
+  <line class="wire" x1="230" y1="200" x2="230" y2="350"/>
+  <text class="lbl" x="255" y="195" text-anchor="start">D</text>
+
+  <!-- 电感 L（水平，4个上半圆） -->
+  <path class="comp" d="M 270 100 A 7.5 7.5 0 0 1 285 100"/>
+  <path class="comp" d="M 285 100 A 7.5 7.5 0 0 1 300 100"/>
+  <path class="comp" d="M 300 100 A 7.5 7.5 0 0 1 315 100"/>
+  <path class="comp" d="M 315 100 A 7.5 7.5 0 0 1 330 100"/>
+  <line class="wire" x1="330" y1="100" x2="345" y2="100"/>
+  <text class="lbl" x="307" y="72" text-anchor="middle">L</text>
+
+  <!-- 输出电容 C（垂直支路） -->
+  <line class="wire" x1="450" y1="100" x2="450" y2="195"/>
+  <line class="comp" x1="435" y1="195" x2="465" y2="195" stroke-width="2.5"/>
+  <line class="comp" x1="435" y1="215" x2="465" y2="215" stroke-width="2.5"/>
+  <line class="wire" x1="450" y1="215" x2="450" y2="350"/>
+  <text class="lbl" x="450" y="82" text-anchor="middle">C</text>
+  <text class="lbl-sm" x="475" y="200" text-anchor="start">+</text>
+
+  <!-- 负载方框 -->
+  <line class="wire" x1="590" y1="100" x2="590" y2="175"/>
+  <rect class="comp" x="555" y="175" width="70" height="90"/>
+  <text class="lbl-cn" x="590" y="228" text-anchor="middle">负载</text>
+  <line class="wire" x1="590" y1="265" x2="590" y2="350"/>
+
+  <!-- Vout 标注 -->
+  <text class="lbl" x="660" y="82" text-anchor="middle">Vout</text>
+  <text class="lbl-sm" x="672" y="95" text-anchor="start">+</text>
+
+  <!-- 底部电压变换标注 -->
+  <text class="lbl-cn" x="380" y="395" text-anchor="middle" font-size="15">12V → 5V</text>
+</svg>
