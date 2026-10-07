@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="440" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wire { stroke:#000; stroke-width:2; fill:none; }
+      .comp { stroke:#000; stroke-width:2; fill:none; }
+      .node { fill:#000; }
+      .lbl { font-family:'Times New Roman',serif; font-size:16px; fill:#000; }
+      .lbl-cn { font-family:'SimSun',serif; font-size:13px; fill:#000; }
+      .lbl-sm { font-family:'Times New Roman',serif; font-size:13px; fill:#000; }
+      .lbl-op { font-family:'Times New Roman',serif; font-size:18px; fill:#000; font-weight:bold; }
+    </style>
+  </defs>
+
+  <!-- 底部公共地线 -->
+  <line class="wire" x1="80" y1="360" x2="720" y2="360"/>
+
+  <!-- ===== Vin 电池（左侧，正极向上接同相端） ===== -->
+  <line class="comp" x1="82" y1="200" x2="118" y2="200" stroke-width="2.5"/>
+  <line class="comp" x1="88" y1="215" x2="112" y2="215" stroke-width="2.5"/>
+  <!-- 正极向上 -->
+  <line class="wire" x1="100" y1="200" x2="100" y2="185"/>
+  <!-- 水平向右到同相端 -->
+  <line class="wire" x1="100" y1="185" x2="360" y2="185"/>
+  <!-- 负极向下接地 -->
+  <line class="wire" x1="100" y1="215" x2="100" y2="360"/>
+  <text class="lbl" x="55" y="195" text-anchor="middle">Vin</text>
+  <text class="lbl-sm" x="125" y="205" text-anchor="start">+</text>
+
+  <!-- ===== 运放三角形（顶点朝右） ===== -->
+  <polygon class="comp" points="380,70 380,230 510,150"/>
+
+  <!-- 反相端(-) 引脚线（上输入） -->
+  <line class="wire" x1="380" y1="115" x2="360" y2="115"/>
+  <text class="lbl-op" x="390" y="120" text-anchor="start">−</text>
+
+  <!-- 同相端(+) 引脚线（下输入，Vin接入） -->
+  <line class="wire" x1="380" y1="185" x2="360" y2="185"/>
+  <text class="lbl-op" x="390" y="190" text-anchor="start">+</text>
+
+  <text class="lbl-cn" x="445" y="155" text-anchor="middle">运放</text>
+
+  <!-- ===== 反相端节点（R1上端、Rf左端公共连接点） ===== -->
+  <circle class="node" cx="360" cy="115" r="4.5"/>
+
+  <!-- ===== R1 接地电阻（垂直，反相端 → 向下接地） ===== -->
+  <!-- 上引脚线 -->
+  <line class="wire" x1="360" y1="115" x2="360" y2="125"/>
+  <!-- 电阻本体 -->
+  <rect class="comp" x="350" y="125" width="20" height="40"/>
+  <!-- 下引脚线 -->
+  <line class="wire" x1="360" y1="165" x2="360" y2="175"/>
+  <!-- 外线向下接地 -->
+  <line class="wire" x1="360" y1="175" x2="360" y2="360"/>
+  <text class="lbl" x="330" y="150" text-anchor="end">R1</text>
+  <text class="lbl-cn" x="330" y="165" text-anchor="end">接地电阻</text>
+
+  <!-- ===== Rf 反馈电阻（反相端 → 向上 → 向右 → 电阻顶部 → 电阻底部 → 向下接输出） ===== -->
+  <!-- 反相端向上 -->
+  <line class="wire" x1="360" y1="115" x2="360" y2="40"/>
+  <!-- 水平向右到上引脚 -->
+  <line class="wire" x1="360" y1="40" x2="550" y2="40"/>
+  <!-- 上引脚线 -->
+  <line class="wire" x1="550" y1="40" x2="550" y2="50"/>
+  <!-- 电阻本体 -->
+  <rect class="comp" x="540" y="50" width="20" height="40"/>
+  <!-- 下引脚线 -->
+  <line class="wire" x1="550" y1="90" x2="550" y2="100"/>
+  <!-- 下引脚向下到输出线 -->
+  <line class="wire" x1="550" y1="100" x2="550" y2="150"/>
+  <text class="lbl" x="575" y="73" text-anchor="start">Rf</text>
+  <text class="lbl-cn" x="575" y="88" text-anchor="start">反馈电阻</text>
+
+  <!-- ===== 输出线 ===== -->
+  <line class="wire" x1="510" y1="150" x2="700" y2="150"/>
+  <circle class="node" cx="550" cy="150" r="4"/>
+  <text class="lbl" x="690" y="130" text-anchor="middle">Vout</text>
+
+  <!-- ===== 负载（右侧方框） ===== -->
+  <line class="wire" x1="650" y1="150" x2="650" y2="240"/>
+  <circle class="node" cx="650" cy="150" r="4"/>
+  <rect class="comp" x="620" y="240" width="60" height="80"/>
+  <text class="lbl-cn" x="650" y="285" text-anchor="middle">负载</text>
+  <line class="wire" x1="650" y1="320" x2="650" y2="360"/>
+
+  <!-- ===== 图题与公式 ===== -->
+  <text class="lbl-cn" x="400" y="400" text-anchor="middle" font-size="14">Vout = (1 + Rf / R1) × Vin</text>
+  <text class="lbl-cn" x="400" y="425" text-anchor="middle" font-size="13">图 1  同相比例运算放大器标准电路</text>
+</svg>
