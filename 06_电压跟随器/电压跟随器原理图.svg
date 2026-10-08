@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="440" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wire { stroke:#000; stroke-width:2; fill:none; }
+      .comp { stroke:#000; stroke-width:2; fill:none; }
+      .node { fill:#000; }
+      .lbl { font-family:'Times New Roman',serif; font-size:16px; fill:#000; }
+      .lbl-cn { font-family:'SimSun',serif; font-size:13px; fill:#000; }
+      .lbl-sm { font-family:'Times New Roman',serif; font-size:13px; fill:#000; }
+      .lbl-op { font-family:'Times New Roman',serif; font-size:18px; fill:#000; font-weight:bold; }
+    </style>
+  </defs>
+
+  <!-- 底部公共地线 -->
+  <line class="wire" x1="80" y1="360" x2="720" y2="360"/>
+
+  <!-- ===== Vin 电池（左侧，正极向上接同相端） ===== -->
+  <line class="comp" x1="82" y1="200" x2="118" y2="200" stroke-width="2.5"/>
+  <line class="comp" x1="88" y1="215" x2="112" y2="215" stroke-width="2.5"/>
+  <!-- 正极向上 -->
+  <line class="wire" x1="100" y1="200" x2="100" y2="185"/>
+  <!-- 水平向右到同相端 -->
+  <line class="wire" x1="100" y1="185" x2="360" y2="185"/>
+  <!-- 负极向下接地 -->
+  <line class="wire" x1="100" y1="215" x2="100" y2="360"/>
+  <text class="lbl" x="55" y="195" text-anchor="middle">Vin</text>
+  <text class="lbl-sm" x="125" y="205" text-anchor="start">+</text>
+
+  <!-- ===== 运放三角形（顶点朝右） ===== -->
+  <polygon class="comp" points="380,70 380,230 510,150"/>
+
+  <!-- 反相端(-) 引脚线（上输入） -->
+  <line class="wire" x1="380" y1="115" x2="360" y2="115"/>
+  <text class="lbl-op" x="390" y="120" text-anchor="start">−</text>
+
+  <!-- 同相端(+) 引脚线（下输入，Vin接入） -->
+  <line class="wire" x1="380" y1="185" x2="360" y2="185"/>
+  <text class="lbl-op" x="390" y="190" text-anchor="start">+</text>
+
+  <text class="lbl-cn" x="445" y="155" text-anchor="middle">运放</text>
+
+  <!-- ===== 反馈线（输出端 → 向上 → 向左 → 向下接反相端） ===== -->
+  <!-- 反相端节点 -->
+  <circle class="node" cx="360" cy="115" r="4.5"/>
+  <!-- 反相端向上 -->
+  <line class="wire" x1="360" y1="115" x2="360" y2="40"/>
+  <!-- 水平向右到输出反馈点 -->
+  <line class="wire" x1="360" y1="40" x2="550" y2="40"/>
+  <!-- 向下到输出线 -->
+  <line class="wire" x1="550" y1="40" x2="550" y2="150"/>
+  <text class="lbl" x="455" y="32" text-anchor="middle">反馈</text>
+  <text class="lbl-cn" x="455" y="55" text-anchor="middle">（输出直接接反相端）</text>
+
+  <!-- ===== 输出线 ===== -->
+  <line class="wire" x1="510" y1="150" x2="700" y2="150"/>
+  <circle class="node" cx="550" cy="150" r="4"/>
+  <text class="lbl" x="690" y="130" text-anchor="middle">Vout</text>
+
+  <!-- ===== 负载（右侧方框） ===== -->
+  <line class="wire" x1="650" y1="150" x2="650" y2="240"/>
+  <circle class="node" cx="650" cy="150" r="4"/>
+  <rect class="comp" x="620" y="240" width="60" height="80"/>
+  <text class="lbl-cn" x="650" y="285" text-anchor="middle">负载</text>
+  <line class="wire" x1="650" y1="320" x2="650" y2="360"/>
+
+  <!-- ===== 图题与公式 ===== -->
+  <text class="lbl-cn" x="400" y="400" text-anchor="middle" font-size="14">Vout = Vin  （增益 Av = 1）</text>
+  <text class="lbl-cn" x="400" y="425" text-anchor="middle" font-size="13">图 1  电压跟随器（缓冲器）标准电路</text>
+</svg>
