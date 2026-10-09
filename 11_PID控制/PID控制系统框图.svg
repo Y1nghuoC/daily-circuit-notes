@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="800" height="440" viewBox="0 0 800 440" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <style>
+      .wire { stroke:#000; stroke-width:2; fill:none; }
+      .box { stroke:#000; stroke-width:2; fill:none; }
+      .sum { stroke:#000; stroke-width:2; fill:#fff; }
+      .node { fill:#000; }
+      .lbl { font-family:'Times New Roman',serif; font-size:16px; fill:#000; }
+      .lbl-cn { font-family:'SimSun',serif; font-size:13px; fill:#000; }
+      .lbl-b { font-family:'Times New Roman',serif; font-size:18px; fill:#000; font-weight:bold; }
+      .pm { font-family:'Times New Roman',serif; font-size:15px; fill:#000; font-weight:bold; }
+    </style>
+  </defs>
+
+  <!-- ===== 设定值 R 输入 ===== -->
+  <text class="lbl-b" x="25" y="186" text-anchor="middle">R</text>
+  <line class="wire" x1="40" y1="180" x2="88" y2="180"/>
+
+  <!-- ===== 比较点（求和圆圈） ===== -->
+  <circle class="sum" cx="100" cy="180" r="13"/>
+  <line class="wire" x1="91" y1="171" x2="109" y2="189" stroke-width="1.5"/>
+  <line class="wire" x1="109" y1="171" x2="91" y2="189" stroke-width="1.5"/>
+  <text class="pm" x="80" y="172" text-anchor="middle">+</text>
+  <text class="pm" x="100" y="208" text-anchor="middle">−</text>
+
+  <!-- 误差线 -->
+  <line class="wire" x1="113" y1="180" x2="160" y2="180"/>
+  <text class="lbl" x="135" y="170" text-anchor="middle">E</text>
+
+  <!-- ===== 分支点，分三路 ===== -->
+  <circle class="node" cx="160" cy="180" r="4"/>
+  <!-- 上支路 -->
+  <line class="wire" x1="160" y1="180" x2="160" y2="100"/>
+  <line class="wire" x1="160" y1="100" x2="190" y2="100"/>
+  <!-- 中支路 -->
+  <line class="wire" x1="160" y1="180" x2="190" y2="180"/>
+  <!-- 下支路 -->
+  <line class="wire" x1="160" y1="180" x2="160" y2="260"/>
+  <line class="wire" x1="160" y1="260" x2="190" y2="260"/>
+
+  <!-- ===== P 方框（上） ===== -->
+  <rect class="box" x="190" y="78" width="100" height="44"/>
+  <text class="lbl-b" x="240" y="100" text-anchor="middle">Kp</text>
+  <text class="lbl-cn" x="240" y="117" text-anchor="middle">比例</text>
+
+  <!-- ===== I 方框（中） ===== -->
+  <rect class="box" x="190" y="158" width="100" height="44"/>
+  <text class="lbl-b" x="240" y="180" text-anchor="middle">Ki / s</text>
+  <text class="lbl-cn" x="240" y="197" text-anchor="middle">积分</text>
+
+  <!-- ===== D 方框（下） ===== -->
+  <rect class="box" x="190" y="238" width="100" height="44"/>
+  <text class="lbl-b" x="240" y="260" text-anchor="middle">Kd · s</text>
+  <text class="lbl-cn" x="240" y="277" text-anchor="middle">微分</text>
+
+  <!-- ===== 三路汇合 ===== -->
+  <!-- 上支路汇合 -->
+  <line class="wire" x1="290" y1="100" x2="325" y2="100"/>
+  <line class="wire" x1="325" y1="100" x2="325" y2="180"/>
+  <!-- 中支路汇合 -->
+  <line class="wire" x1="290" y1="180" x2="325" y2="180"/>
+  <!-- 下支路汇合 -->
+  <line class="wire" x1="290" y1="260" x2="325" y2="260"/>
+  <line class="wire" x1="325" y1="260" x2="325" y2="180"/>
+  <circle class="node" cx="325" cy="180" r="4"/>
+
+  <!-- 到加法点 -->
+  <line class="wire" x1="325" y1="180" x2="347" y2="180"/>
+
+  <!-- ===== 加法点（求和圆圈） ===== -->
+  <circle class="sum" cx="360" cy="180" r="13"/>
+  <line class="wire" x1="351" y1="171" x2="369" y2="189" stroke-width="1.5"/>
+  <line class="wire" x1="369" y1="171" x2="351" y2="189" stroke-width="1.5"/>
+
+  <!-- 控制量 U -->
+  <line class="wire" x1="373" y1="180" x2="420" y2="180"/>
+  <text class="lbl" x="397" y="170" text-anchor="middle">U</text>
+
+  <!-- ===== 被控对象方框 ===== -->
+  <rect class="box" x="420" y="148" width="140" height="64"/>
+  <text class="lbl-b" x="490" y="178" text-anchor="middle">G(s)</text>
+  <text class="lbl-cn" x="490" y="199" text-anchor="middle">被控对象</text>
+
+  <!-- 输出 Y -->
+  <line class="wire" x1="560" y1="180" x2="700" y2="180"/>
+  <circle class="node" cx="620" cy="180" r="4"/>
+  <text class="lbl-b" x="715" y="186" text-anchor="middle">Y</text>
+
+  <!-- ===== 反馈回路（Y → 向下 → 向左 → 向上到比较点） ===== -->
+  <line class="wire" x1="620" y1="180" x2="620" y2="350"/>
+  <line class="wire" x1="620" y1="350" x2="100" y2="350"/>
+  <line class="wire" x1="100" y1="350" x2="100" y2="193"/>
+
+  <!-- ===== 图题 ===== -->
+  <text class="lbl-cn" x="400" y="400" text-anchor="middle" font-size="14">U(t) = Kp·E(t) + Ki·∫E(t)dt + Kd·dE(t)/dt</text>
+  <text class="lbl-cn" x="400" y="425" text-anchor="middle" font-size="13">图 1  PID 控制系统标准框图</text>
+</svg>
